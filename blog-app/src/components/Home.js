@@ -1,14 +1,16 @@
 import { data } from 'autoprefixer';
 import React, { Component } from 'react'
 import {Link} from "react-router-dom"
+import AllArticles from './AllArticles';
 
 class Hero extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             data : [],
             tags:[],
-            clicked:"global"
+            clicked:"global",
+            activeTag : ""
         }
     }
     handleOnload = () =>{
@@ -34,7 +36,8 @@ class Hero extends Component {
         .then(res => res.json())
         .then(data => this.setState({
             data : data.articles,
-            clicked:"tags"
+            clicked:"tags",
+            activeTag : "#" + eachTag?.target?.value
         })) 
     }
 
@@ -42,9 +45,8 @@ class Hero extends Component {
 
     render() {
       
-        let {data,tags} = this.state;
-        // var allTags = [...new Set(tag)]
-        // console.log(allTags )
+        let {data,tags, activeTag} = this.state;
+        // console.log(tags?.tags?.forEach(each => console.log(each)))
      
         return (
            <>
@@ -67,41 +69,32 @@ class Hero extends Component {
                 <div className="line"></div>
             </div>
             <section className="container">
+                <div className="flex">
                 <h2 className="global_feed_heading">Global Feed</h2>
+                {
+                    <span className="global_feed_heading active_tag_heading">{`${activeTag}`}</span>
+                }
+                </div>
             </section>
             <section className="total_section">
                 <div className="container">
-                   <div className="articles_tags_section flex between">
-                        <section className="articles_section flex-65 flex between wrap">
-                                {
-                                    data.map((article) =>  (
-                                        <article className="article flex-40">
-                                            <div className="article_data">
-                                                <h2 className="article_title">{article.title}</h2>
-                                                <p className="article_desc">{article.description}</p>
-                                            </div>
-                                            <Link to={`/article/${article.slug}`}>
-                                            <button className="form_btn article_btn">Read More...</button>
-
-                                            </Link>
-                                            <div className="article_author_data flex align_center">
-                                                <img className="author_img" src={article.author.image} alt="" />
-                                                <h3 className="author_name">{article.author.username}</h3>
-                                            </div>
-                                        </article>
-                                    ))
-                                }
-                    </section>
+                   <div className="articles_tags_section flex between ">
+                        <section className="articles_section flex-65 flex between wrap">                         
+                                <Link to="/">
+                                    <AllArticles data={data} />
+                                </Link>
+                        </section>
                     
-                    <section className="tags_section flex-35 flex wrap">
-                        {
-                           tags?.tags?.map((eachTag)=>(
-                            //    console.log(eachTag)
-                              eachTag === "" ? "" :  <button className="tag_btn" value={eachTag} onClick={(eachTag) => this.handleTags(eachTag)}>{eachTag}</button>
-                           ))
-                        }
-                     
-                    </section>
+                        
+                        <section className="tags_section flex-35 ">
+                            {
+                            tags?.tags?.map((eachTag)=>(
+                                //    console.log(eachTag)
+                                eachTag === "" ? "" :  <button className="tag_btn" value={eachTag} onClick={(eachTag) => this.handleTags(eachTag)}>{eachTag}</button>
+                            ))
+                            }
+                        
+                        </section>
 
                    </div>
                 </div>

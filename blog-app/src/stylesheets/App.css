@@ -226,6 +226,7 @@ input::placeholder {
   padding: 2rem;
   border-radius: 8px;
   position: relative;
+  /* width: 40%; */
 }
 .article_title {
   font-size: 1.3rem;
@@ -275,6 +276,12 @@ input::placeholder {
 .tags_section {
   height: 500px;
   padding-left: 2rem;
+  /* border: 1px solid red; */
+  overflow-y: auto;
+}
+.tags_section::-webkit-scrollbar {
+  display: none;
+
 }
 .single_author_image {
   width: 100px;
@@ -328,4 +335,10 @@ input::placeholder {
 .global_feed_heading {
   font-size: 1.3rem;
   margin: 1rem;
+  cursor: pointer;
+}
+.active_tag_heading {
+ cursor: pointer;
+  border-bottom: 3px solid #388888;
+  padding-bottom: 0.3rem;
 }
