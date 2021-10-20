@@ -5,6 +5,8 @@ import Home from './Home';
 import Signin from './Signin';
 import SignUp from './SignUp';
 import SingleArticle from './SingleArticle';
+import NoMatch from './NoMatch';
+
 
 function App() {
   return (
@@ -22,6 +24,10 @@ function App() {
             <SignUp />
         </Route>
         <Route path="/article/:slug" component={SingleArticle} exact/>
+
+        <Route path="*">
+          <NoMatch />
+        </Route>
       </Switch>
     
     </>

@@ -1,4 +1,6 @@
 import React from 'react'
+import Loader from './Loader';
+import { ArticlesUrl } from './utils/constant';
 
 class SingleArticle extends React.Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class SingleArticle extends React.Component {
     componentDidMount() {
         let slug = this.props.match.params.slug;
 
-        fetch(`https://mighty-oasis-08080.herokuapp.com/api/articles/${slug}`)
+        fetch(ArticlesUrl + `/${slug}`)
         .then(res => res.json())
         .then(data => this.setState({
             singleArticle : data
@@ -21,7 +23,10 @@ class SingleArticle extends React.Component {
 
     render() {
         let {singleArticle} = this.state;
-        // console.log(singleArticle?.article?.slug)
+        // // console.log(singleArticle?.article?.slug)
+        if(singleArticle.length < 1) {
+            return <Loader />
+        }
         return (
             <>
              <section>

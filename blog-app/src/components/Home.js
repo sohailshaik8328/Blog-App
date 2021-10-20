@@ -1,53 +1,92 @@
 import { data } from 'autoprefixer';
 import React, { Component } from 'react'
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import { ArticlesUrl, TagsUrl} from './utils/constant';
 import AllArticles from './AllArticles';
+import Loader from './Loader';
+import Pagination from './Pagination';
 
-class Hero extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data : [],
             tags:[],
-            clicked:"global",
-            activeTag : ""
+            activeTag : "",
+            articlesCount : 0,
+            articlesPerPage : 10,
+            activePageIndex : 1,
+            error : ""
         }
     }
+    emptyTab = () => {
+        this.setState({activeTag : ""})
+    }
+
+    componentDidMount() {
+        this.handleOnload();        
+    
+    }
+    componentDidUpdate(_prevProps, prevState ) {
+        if(prevState.activePageIndex !== this.state.activePageIndex || prevState.activeTag !== this.state.activeTag ) {
+            this.handleOnload()
+        }
+    }
+
+    updateCurrentPageIndex = (index) => {
+        this.setState({
+            activePageIndex : index,
+        }, this.handleOnload)
+    }
     handleOnload = () =>{
-        if(this.state.clicked=="global"){
-            fetch(`https://mighty-oasis-08080.herokuapp.com/api/articles`)
-        .then(res => res.json())
+        let limit = this.state.articlesPerPage;
+        let offset = (this.state.activePageIndex - 1) * limit;
+        let tag = this.state.activeTag
+        fetch(ArticlesUrl + `/?offset=${offset}&limit=${limit}` + (tag && `&tag=${tag}`))
+        .then(res => {
+            if(!res.ok) {
+                throw new Error(res.statusText);
+            }
+            return res.json()
+        })
         .then(data => this.setState({
-            data : data.articles
-        })) 
-        fetch('https://mighty-oasis-08080.herokuapp.com/api/tags').then(res => res.json())
+            data : data.articles,
+            error : "",
+            articlesCount : data.articlesCount,
+        }))
+        .catch((err) => {
+            this.setState({error : "Not able to fetch Data"})
+        })
+        
+        
+        fetch(TagsUrl).then(res => res.json())
         .then(data => this.setState({
             tags : data
         }))
-        }
     }
-    componentDidMount() {
-        // if global feed 
-      this.handleOnload();        
-     
-    }
-    handleTags = (eachTag) => {
-        fetch(`https://mighty-oasis-08080.herokuapp.com/api/articles?tag=${eachTag?.target?.value}`)
-        .then(res => res.json())
-        .then(data => this.setState({
-            data : data.articles,
-            clicked:"tags",
-            activeTag : "#" + eachTag?.target?.value
-        })) 
+
+    addTab = (value) => {
+        this.setState({activeTag : value})
     }
 
       
 
     render() {
       
-        let {data,tags, activeTag} = this.state;
+        let {data,tags, activeTag, error, articlesCount, articlesPerPage, activePageIndex} = this.state;
         // console.log(tags?.tags?.forEach(each => console.log(each)))
-     
+        if(error) {
+            return <p className="data_fetch_error">{error}</p>
+        }
+        if(!activePageIndex) {
+            return <Loader />
+        }
+        if(!data) {
+            return <Loader />
+        }
+        if(data.length < 1) {
+            return <h2 className="article_not_found">No Articles Found!</h2>
+        }
         return (
            <>
              <section className="hero_section">
@@ -68,11 +107,18 @@ class Hero extends Component {
             <div className="container">
                 <div className="line"></div>
             </div>
-            <section className="container">
+            <section className="container ">
                 <div className="flex">
-                <h2 className="global_feed_heading">Global Feed</h2>
+                    <Link onClick={this.emptyTab} className={`global_feed_heading ${activeTag === "" && "active_tag_heading"}`} to="/">
+                        <h2 >Global Feed</h2>
+
+                    </Link>
                 {
-                    <span className="global_feed_heading active_tag_heading">{`${activeTag}`}</span>
+                    activeTag && (
+                        <Link className={`global_feed_heading ${activeTag && "active_tag_heading"}`} to="/">
+                            <h2 >{`${activeTag}`}</h2>
+                        </Link>
+                    )
                 }
                 </div>
             </section>
@@ -89,14 +135,17 @@ class Hero extends Component {
                         <section className="tags_section flex-35 ">
                             {
                             tags?.tags?.map((eachTag)=>(
-                                //    console.log(eachTag)
-                                eachTag === "" ? "" :  <button className="tag_btn" value={eachTag} onClick={(eachTag) => this.handleTags(eachTag)}>{eachTag}</button>
-                            ))
+                                eachTag === "" ? "" :  <button key={eachTag} className="tag_btn" value={eachTag} onClick={() => this.addTab(eachTag)}>{eachTag}</button>
+                                ))
                             }
                         
                         </section>
 
                    </div>
+
+                   <section className="pagination_section">
+                    <Pagination updateCurrentPageIndex={this.updateCurrentPageIndex} activePageIndex = {activePageIndex} articlesCount = {articlesCount} articlesPerPage = {articlesPerPage} />
+                   </section>
                 </div>
             </section>
            </>
@@ -104,4 +153,4 @@ class Hero extends Component {
     }
 }
 
-export default Hero;
+export default Home;

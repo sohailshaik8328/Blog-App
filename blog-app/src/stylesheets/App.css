@@ -186,11 +186,15 @@ input::placeholder {
 }
 .input_btn {
   background-color:#2A62FF ;
-  font-size: 1.3rem;
   letter-spacing: 1.5px;
   color: #ffffff;
   width: 95.9%;
   padding: 0.6rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.input_btn:hover {
+  background-color:#2a63fff3 ;
 }
 .form_div {
   margin: 8rem auto;
@@ -213,9 +217,7 @@ input::placeholder {
 .line {
   border-top: 1px solid rgba(128, 128, 128, 0.624);
 }
-.articles_tags_section {
-  margin-top: 2rem;
-}
+
 .articles_section {
   border-right: 2px solid rgba(128, 128, 128, 0.39);
   padding-right: 1rem;
@@ -337,8 +339,61 @@ input::placeholder {
   margin: 1rem;
   cursor: pointer;
 }
+.global_feed_heading:hover {
+  color: purple;
+}
 .active_tag_heading {
  cursor: pointer;
   border-bottom: 3px solid #388888;
   padding-bottom: 0.3rem;
+}
+
+.not_found_page {
+  font-size: 3rem;
+  margin-top: 8rem;
+}
+.data_fetch_error {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+.pagination_btns {
+  font-size: 1.3rem;
+  padding: 0.3rem 0.8rem;
+  margin-left: 0.3rem;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  border: 2px solid #62C34D;
+  background-color: #ffffff;
+}
+.pagination_btns:hover {
+  background-color: #62C34D;
+  color: white;
+}
+.pagination_section {
+  margin: 2rem auto;
+  text-align: center;
+}
+.active_pagination {
+  background-color: #62C34D;
+  color: white;
+}
+.active_pagination:hover {
+  background-color: #63c34dd5;
+}
+.error {
+  font-size: 1.3rem;
+  color: crimson;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+
+}
+.nav_active {
+  color: crimson;
+}
+.article_not_found {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 5rem;
 }
