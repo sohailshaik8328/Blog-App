@@ -32,7 +32,48 @@ class SignUp extends React.Component {
         })
     }
 
-    signUp = () => {
+    // signUp = () => {
+    //     let url = BaseUrl + "users"
+    //     // console.log(url)
+    //     let {username, email, password, errors} = this.state;
+    //     fetch(url, {
+    //         method : "POST",
+    //         headers : {'Content-Type' : 'application/json'},
+    //         body : JSON.stringify({
+    //             "user": {
+    //                 username,
+    //                 email,
+    //                 password
+    //             }
+    //         })
+    //     })
+    //     .then(res => {
+    //         if(!res.ok) {
+    //             res.json().then(({errors}) => {
+    //                 this.setState({errors})
+    //                 // return Promise.reject(errors)
+    //             })
+    //             throw new Error('Sign up not successfull')
+    //         }
+    //         return res.json()
+    //     })
+    //     .then(({user}) => {
+    //         this.setState({
+    //             username : "",
+    //             email : "",
+    //             password : ""
+    //         })
+    //         this.props.history.push('/signin');
+    //         console.log("User successfully register", user);
+
+    //     })
+    //     .catch(err => console.log(err))
+    // }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        // this.signUp()
+
         let url = BaseUrl + "users"
         // console.log(url)
         let {username, email, password, errors} = this.state;
@@ -49,14 +90,15 @@ class SignUp extends React.Component {
         })
         .then(res => {
             if(!res.ok) {
-                return res.json().then(({errors}) => {
-                    this.setState({errors})
+               return res.json().then(({errors}) => {
                     return Promise.reject(errors)
                 })
+                // throw new Error('Sign up not successfull')
             }
             return res.json()
         })
         .then(({user}) => {
+            this.props.updateUser(user);
             this.setState({
                 username : "",
                 email : "",
@@ -66,12 +108,7 @@ class SignUp extends React.Component {
             console.log("User successfully register", user);
 
         })
-        .catch(err => this.setState({errors}))
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.signUp()
+        .catch(errors => this.setState({errors}))
     }
 
     render() {

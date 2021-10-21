@@ -30,7 +30,52 @@ class Signin extends React.Component {
         })
     }
 
-    login = () => {
+    // login = () => {
+    //     let url = BaseUrl + "users/login"
+    //     // console.log(url)
+    //     let {email, password, errors} = this.state;
+    //     fetch(url, {
+    //         method : "POST",
+    //         mode: 'cors', 
+    //         cache: 'no-cache', 
+    //         credentials: 'same-origin', 
+    //         headers : {'Content-Type' : 'application/json'},
+    //         redirect: 'follow', 
+    //         referrerPolicy: 'no-referrer',
+    //         body : JSON.stringify({
+    //             "user": {
+    //                email,
+    //                password
+    //             }
+    //         })
+    //     })
+    //     .then(res => {
+    //         if(!res.ok) {
+    //             return res.json().then(({errors}) => {
+    //                 this.setState({errors})
+    //                 return Promise.reject(errors);
+    //             })
+    //         }
+    //         return res.json();
+    //     })
+    //     .then((userInfo) => {
+    //         this.setState({
+    //             email : "",
+    //             password : ""
+    //         })
+    //         // console.log(this.props)
+    //         this.props.history.push('/')
+    //         console.log("User successfully logged in", userInfo);
+    //         localStorage.setItem(localStorageKey, userInfo.user.token)
+    //     })
+    //     .catch(err => this.setState({errors}))
+    // }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        
+        // this.login();
+
         let url = BaseUrl + "users/login"
         // console.log(url)
         let {email, password, errors} = this.state;
@@ -52,29 +97,34 @@ class Signin extends React.Component {
         .then(res => {
             if(!res.ok) {
                 return res.json().then(({errors}) => {
-                    this.setState({errors})
+                    
                     return Promise.reject(errors);
                 })
             }
             return res.json();
         })
-        .then((userInfo) => {
+        .then(({user}) => {
+            this.props.updateUser(user)
             this.setState({
                 email : "",
                 password : ""
             })
             // console.log(this.props)
             this.props.history.push('/')
-            console.log("User successfully logged in", userInfo);
-            localStorage.setItem(localStorageKey, userInfo.user.token)
+            console.log("User successfully logged in", user);
+            localStorage.setItem(localStorageKey, user.token)
         })
-        .catch(err => this.setState({errors}))
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        
-        this.login();
+        .catch(errors => {
+            this.setState(prevState => {
+                return {
+                    ...prevState,
+                    errors : {
+                        ...prevState.errors,
+                        email : "Email or password is Invalid!"
+                    }
+                }
+            })
+        })
 
     }
 

@@ -23,13 +23,12 @@ function AuthenticatedHeader(props) {
                     <div className="header_right ">
                         <nav className="nav">
                             <ul className="flex ">
-                                {/* <li><a href="/"><NavLink activeClassName="nav_active" exact to="/">Home</NavLink></a></li> */}
+                            {/* <li><NavLink activeClassName="nav_active" exact to="/">Home</NavLink></li> */}
                                 <li><a href="/" className="">Home</a></li>
-                                {/* <li><NavLink activeClassName="nav_active" exact to="/">Home</NavLink></li> */}
-                                <li><NavLink activeClassName="nav_active" to="">Profile</NavLink></li>
-                                <li><NavLink activeClassName="nav_active"  to="">Settings</NavLink></li>
-                                <li><NavLink activeClassName="nav_active" onClick={props.logout} to="/">Log Out</NavLink></li>
-                                {/* <li><a href="/" onClick={props.logout}>Log Out</a></li> */}
+                                <li><NavLink activeClassName="nav_active" to="/new-article">New Article</NavLink></li>
+                                <li><NavLink activeClassName="nav_active" to="/profile">Profile</NavLink></li>
+                                <li><NavLink activeClassName="nav_active"  to="/settings">Settings</NavLink></li>
+                                <li><NavLink  onClick={props.logout} to="/">Log Out</NavLink></li>
                             </ul>
                         </nav>
                     </div>
@@ -55,8 +54,8 @@ function UnAuthenticatedHeader(props) {
                     <div className="header_right flex-20">
                         <nav className="nav">
                             <ul className="flex ">
-                                {/* <li><NavLink activeClassName="nav_active" exact to="/">Home</NavLink></li> */}
-                                <li><a href="/"  className="">Home</a></li>
+                                <li><NavLink activeClassName="nav_active" exact to="/">Home</NavLink></li>
+                                {/* <li><a href="/"  className="">Home</a></li> */}
                                 <li><NavLink activeClassName="nav_active" to="/signin">Log in</NavLink></li>
                                 <li><NavLink activeClassName="nav_active" to="/signup">Sign up</NavLink></li>
                             </ul>

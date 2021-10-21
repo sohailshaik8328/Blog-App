@@ -391,7 +391,7 @@ input::placeholder {
 .error {
   font-size: 1.3rem;
   color: crimson;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   margin-bottom: 0.5rem;
 
 }
@@ -402,4 +402,11 @@ input::placeholder {
   font-size: 1.5rem;
   text-align: center;
   margin-top: 5rem;
+}
+.gif {
+  text-align: center;
+  margin-left: 50rem;
+  margin-top: 15rem;
+  width: 200px;
+
 }

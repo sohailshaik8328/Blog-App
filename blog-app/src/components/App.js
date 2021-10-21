@@ -68,14 +68,14 @@ class App extends React.Component {
 
  render() {
    if(this.state.isVerified) {
-     return <Loader />
-    //  <img src="/images/login.gif" alt="login Gif" />
+     return  <Loader />
+    //  <img className="gif" src="/images/login2.gif" alt="login Gif" />
    }
   return (
     <>
     <Header {...this.state} logout={this.logout} />
       {
-        this.state.isLogged ? <Authenticated logout = {this.logout} /> : <UnAuthenticated />
+        this.state.isLogged ? <Authenticated updateUser={this.updateUser} logout = {this.logout} /> : <UnAuthenticated updateUser={this.updateUser} />
       }
     
     </>
@@ -86,16 +86,15 @@ class App extends React.Component {
 function UnAuthenticated(props) {
   return (
     <>
-    {/* <Header /> */}
    <Switch>
      <Route path='/' exact >
        <Home />
      </Route>
      <Route path="/signin" exact >
-         <Signin />
+         <Signin updateUser={props.updateUser} />
      </Route>
      <Route path="/signup" exact >
-         <SignUp />
+         <SignUp updateUser={props.updateUser} />
      </Route>
      <Route path="/article/:slug" component={SingleArticle} exact/>
 
@@ -110,20 +109,19 @@ function UnAuthenticated(props) {
 function Authenticated(props) {
   return (
     <>
-  {/* <Header /> */}
    <Switch>
      <Route path='/' exact >
        <Home />
      </Route>
-     <Route>
-
+     <Route path='/new-article' exact >
+       <Home />
      </Route>
-     {/* <Route path="/signin" exact >
-         <Signin />
-     </Route> */}
-     {/* <Route path="/signup" exact >
-         <SignUp />
-     </Route> */}
+     <Route path='/profile' exact >
+       <Home />
+     </Route>
+     <Route path='/settings' exact >
+       <Home />
+     </Route>
      <Route path="/article/:slug" component={SingleArticle} exact/>
 
      <Route path="*">
