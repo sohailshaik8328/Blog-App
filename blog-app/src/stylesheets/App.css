@@ -163,22 +163,22 @@ a {
 
 form {
 box-shadow: -2px -2px 6px rgba(128, 128, 128, 0.356), 2px 2px 6px rgba(128, 128, 128, 0.37);
-  width: 30%;
-  padding: 4rem 3rem;
+  width: 25%;
+  padding: 3rem 2rem;
 }
 label {
   display: block;
   font-size: 1.3rem;
   font-weight: lighter;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 }
 input {
-  width: 90%;
-  padding: 0.9rem ;
+  width: 80%;
+  padding:0.6rem 0.9rem ;
   margin: 0.5rem;
   outline: 0;
   font-size: 1.3rem;
-
+  margin-left: 1rem;
   border: 1px solid rgba(128, 128, 128, 0.329);
 }
 input::placeholder {
@@ -188,16 +188,22 @@ input::placeholder {
   background-color:#2A62FF ;
   letter-spacing: 1.5px;
   color: #ffffff;
-  width: 95.9%;
-  padding: 0.6rem;
-  font-size: 1.3rem;
+  width: 88%;
+  /* padding: 0.3rem; */
+  font-size: 1.2rem;
+  /* height: 40px; */
   cursor: pointer;
 }
 .input_btn:hover {
-  background-color:#2a63fff3 ;
+ background-color:#2a63fff3 ;
 }
 .form_div {
   margin: 8rem auto;
+}
+.form_heading {
+  font-size: 1.8rem;
+  text-align: center;
+  padding-bottom: 1rem;
 }
 .form_btn {
   font-size: 1.2rem;
