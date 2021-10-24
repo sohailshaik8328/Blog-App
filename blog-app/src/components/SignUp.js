@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { BaseUrl } from './utils/constant';
 import validate from './utils/validate';
+import {withRouter} from "react-router"
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -30,6 +32,85 @@ class SignUp extends React.Component {
         })
     }
 
+    // signUp = () => {
+    //     let url = BaseUrl + "users"
+    //     // console.log(url)
+    //     let {username, email, password, errors} = this.state;
+    //     fetch(url, {
+    //         method : "POST",
+    //         headers : {'Content-Type' : 'application/json'},
+    //         body : JSON.stringify({
+    //             "user": {
+    //                 username,
+    //                 email,
+    //                 password
+    //             }
+    //         })
+    //     })
+    //     .then(res => {
+    //         if(!res.ok) {
+    //             res.json().then(({errors}) => {
+    //                 this.setState({errors})
+    //                 // return Promise.reject(errors)
+    //             })
+    //             throw new Error('Sign up not successfull')
+    //         }
+    //         return res.json()
+    //     })
+    //     .then(({user}) => {
+    //         this.setState({
+    //             username : "",
+    //             email : "",
+    //             password : ""
+    //         })
+    //         this.props.history.push('/signin');
+    //         console.log("User successfully register", user);
+
+    //     })
+    //     .catch(err => console.log(err))
+    // }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        // this.signUp()
+
+        let url = BaseUrl + "users"
+        // console.log(url)
+        let {username, email, password, errors} = this.state;
+        fetch(url, {
+            method : "POST",
+            headers : {'Content-Type' : 'application/json'},
+            body : JSON.stringify({
+                "user": {
+                    username,
+                    email,
+                    password
+                }
+            })
+        })
+        .then(res => {
+            if(!res.ok) {
+               return res.json().then(({errors}) => {
+                    return Promise.reject(errors)
+                })
+                // throw new Error('Sign up not successfull')
+            }
+            return res.json()
+        })
+        .then(({user}) => {
+            this.props.updateUser(user);
+            this.setState({
+                username : "",
+                email : "",
+                password : ""
+            })
+            this.props.history.push('/signin');
+            console.log("User successfully register", user);
+
+        })
+        .catch(errors => this.setState({errors}))
+    }
+
     render() {
         let {username, email, password, errors} = this.state;
         return (
@@ -38,6 +119,7 @@ class SignUp extends React.Component {
                   <div className="container">
                       <div className="form_div flex align_center center">
                         <form action="" onSubmit={this.handleSubmit}>
+                        <h2 className="form_heading">Sign Up</h2>
                             <label htmlFor="username">Username</label>
                             <input name="username" value={username} onChange={this.handleChange} type="username" placeholder="Enter your username"  />
                             <p className="error">{errors.username}</p>
@@ -60,4 +142,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp
+export default withRouter(SignUp)
