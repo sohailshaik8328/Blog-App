@@ -84,9 +84,11 @@ class App extends React.Component {
      return  <Loader />
     //  <img className="gif" src="/images/login2.gif" alt="login Gif" />
    }
+  //  let user = this.state.user.user
+  //  console.log(user.username)
   return (
     <>
-    <Header {...this.state} logout={this.logout} />
+    <Header {...this.state}  logout={this.logout} />
       {
         this.state.isLogged ? <Authenticated {...this.state} onUpdateProfile = {this.onUpdateProfile} updateUser={this.updateUser} logout = {this.logout} /> : <UnAuthenticated {...this.state} updateUser={this.updateUser} />
       }
@@ -141,10 +143,13 @@ function Authenticated(props) {
         <OthersProfile {...props}  />
       </Route>
 
-     <Route path="/article/:slug" component={SingleArticle} exact/>
+     {/* <Route path="/article/:slug" component={SingleArticle} exact/> */}
+     <Route path="/article/:slug" exact>
+       <SingleArticle  user={user} />
+     </Route>
 
      <Route path="*">
-       <NoMatch />
+       <NoMatch />platform
      </Route>
    </Switch>
     </>

@@ -3,12 +3,15 @@ import { NavLink } from "react-router-dom"
 import {withRouter} from "react-router"
 
 function Header(props) {
+    // console.log(props.user.username)
     return (
-        props.isLogged ? <AuthenticatedHeader logout={props.logout} /> : <UnAuthenticatedHeader />
+        props.isLogged ? <AuthenticatedHeader user={props.user} logout={props.logout} /> : <UnAuthenticatedHeader />
     )
 }
 
 function AuthenticatedHeader(props) {
+    let user = props.user
+    // console.log(user.image)
     return (
         <>
             <header className="header_section">
@@ -26,7 +29,8 @@ function AuthenticatedHeader(props) {
                             {/* <li><NavLink activeClassName="nav_active" exact to="/">Home</NavLink></li> */}
                                 <li><a href="/" className="">Home</a></li>
                                 <li><NavLink activeClassName="nav_active" to="/new-article">New Article</NavLink></li>
-                                <li><NavLink activeClassName="nav_active" to="/profile">Profile</NavLink></li>
+                                {/* <li><NavLink activeClassName="nav_active" to="/profile">Profile</NavLink></li> */}
+                                <li><a href="/profile">Profile</a></li>
                                 <li><NavLink activeClassName="nav_active"  to="/settings">Settings</NavLink></li>
                                 <li><NavLink  onClick={props.logout} to="/">Log Out</NavLink></li>
                             </ul>
