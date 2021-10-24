@@ -4,6 +4,7 @@
    License: none (public domain)
 */
 
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -55,7 +56,7 @@ html {
   font-size: 16px;
 }
 
-.container {
+.my_container {
   max-width: 1720px;
   width: 100%;
   /* border: 1px solid black; */
@@ -107,6 +108,9 @@ html {
 }
 .flex-65 {
   flex: 0 1 65%;
+}
+.flex-25 {
+  flex: 0 1 25%;
 }
 .wrap {
   flex-wrap: wrap;
@@ -161,18 +165,18 @@ a {
   font-weight: bold;
 }
 
-form {
+.form {
 box-shadow: -2px -2px 6px rgba(128, 128, 128, 0.356), 2px 2px 6px rgba(128, 128, 128, 0.37);
   width: 25%;
   padding: 3rem 2rem;
 }
-label {
+.label {
   display: block;
   font-size: 1.3rem;
   font-weight: lighter;
   margin-left: 1rem;
 }
-input {
+.input {
   width: 80%;
   padding:0.6rem 0.9rem ;
   margin: 0.5rem;
@@ -181,7 +185,7 @@ input {
   margin-left: 1rem;
   border: 1px solid rgba(128, 128, 128, 0.329);
 }
-input::placeholder {
+.input::placeholder {
   font-size: 1.3rem;
 }
 .input_btn {
@@ -409,4 +413,103 @@ input::placeholder {
   margin-top: 15rem;
   width: 200px;
 
+}
+.popular_tags_heading {
+  font-size: 1.3rem;
+  margin: 1rem;
+}
+.article_form {
+  width: 60%;
+  padding: 2rem;
+  position: relative;
+}
+.write_art_heading {
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.art_label {
+  font-size: 1.2rem;
+  color:rgba(0, 0, 0, 0.61);
+  /* margin-top: 2rem; */
+
+}
+.art_inp {
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgba(128, 128, 128, 0.363);
+  border-radius: 6px;
+  background-color: #F9F9FA;
+  outline: 0;
+  display: block;
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+}
+.art_textarea {
+  height: 12rem;
+}
+.art_inp:focus {
+  outline: 0;
+}
+.art_inp_field {
+  margin-top: 1rem;
+}
+.art_form_btn {
+  position: absolute;
+  right: 1rem;
+  bottom: -2rem;
+}
+.add_art_btn {
+  background-color: #6366F1;
+}
+.new_art_error {
+  margin-left: 0;
+  margin-top: 0.2rem;
+}
+.vector_image {
+  width: 90%;
+  height: 320px;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+.profile_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  border: 4px solid #388888;
+  padding: 0.1rem;
+}
+.profile_username {
+  font-size: 1.8rem;
+  /* margin-left: 1rem; */
+  margin-top: 0.5rem;
+}
+.profile_bio {
+  font-size: 1.5rem;
+  /* margin-left: 1rem; */
+  margin-top: 0.5rem;
+}
+.banner_profile {
+  position: relative;
+}
+.profile_card {
+  position: absolute;
+  /* top: 0; */
+  left: 20%;
+  bottom: -8rem;
+  text-align: center;
+}
+
+.profile_articles_section {
+  /* border: 1px solid black; */
+  margin-top: 10rem;
+  margin-left: 5rem;
+}
+.profile_article {
+  width: 50%;
+}
+.my_articles {
+  margin-left: 5rem;
+  
 }

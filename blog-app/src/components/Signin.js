@@ -136,15 +136,15 @@ class Signin extends React.Component {
               <section>
                   <div className="container">
                       <div className="form_div flex align_center center">
-                        <form  onSubmit={this.handleSubmit }>
+                        <form className='form' onSubmit={this.handleSubmit }>
                             <h2 className="form_heading">Log In</h2>
-                            <label htmlFor="email">Email</label>
-                            <input onChange={this.handleChange} name="email" value={email}  type="email" placeholder="Enter your email"  />
+                            <label className="label" htmlFor="email">Email</label>
+                            <input className="input" onChange={this.handleChange} name="email" value={email}  type="email" placeholder="Enter your email"  />
                             <p className="error">{errors.email}</p>
-                            <label htmlFor="password">Password</label>
-                            <input onChange={this.handleChange} name="password" value={password} type="password" placeholder="Enter your Password"  />
+                            <label className="label" htmlFor="password">Password</label>
+                            <input className="input" onChange={this.handleChange} name="password" value={password} type="password" placeholder="Enter your Password"  />
                             <p className="error">{errors.password}</p>
-                            <input disabled={errors.email || errors.password} type="submit" value="Log in" className="input_btn"  /> 
+                            <input disabled={errors.email || errors.password} type="submit" value="Log in" className="input_btn input"  /> 
                             <Link to="/signup">
                                 <button className="form_btn">Signup</button>
                             </Link>

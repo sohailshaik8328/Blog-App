@@ -30,7 +30,7 @@ class SingleArticle extends React.Component {
         return (
             <>
              <section>
-                 <div className="container">
+                 <div className="my_container">
                     <section className="single_author_info">
                         <img className="single_author_image" src={singleArticle?.article?.author.image} alt="" />
                         <h2 className="single_author_name" >{singleArticle?.article?.author.username}</h2>

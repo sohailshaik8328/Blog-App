@@ -12,7 +12,7 @@ function AuthenticatedHeader(props) {
     return (
         <>
             <header className="header_section">
-            <div className="container">
+            <div className="my_container">
                 <section className="header flex between align_center">
                     <div className="header_left flex-30">
                         <a href="/">
@@ -43,7 +43,7 @@ function UnAuthenticatedHeader(props) {
     return (
         <>
             <header className="header_section">
-            <div className="container">
+            <div className="my_container">
                 <section className="header flex between align_center">
                     <div className="header_left flex-30">
                         <a href="/">

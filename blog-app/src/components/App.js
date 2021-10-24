@@ -9,6 +9,10 @@ import NoMatch from './NoMatch';
 import React from 'react';
 import { BaseUrl, localStorageKey } from './utils/constant';
 import Loader from './Loader';
+import NewArticle from './NewArticle';
+import Settings from './Settings';
+import Profile from './Profile';
+import OthersProfile from './OthersProfile';
 
 
 class App extends React.Component {
@@ -17,9 +21,18 @@ class App extends React.Component {
     this.state = {
       isLogged : false,
       user : null,
-      isVerified : true
+      isVerified : true,
+      updateProfile : null
     }
   }
+
+  
+  onUpdateProfile = (profile) => {
+    this.setState({
+      updateProfile : profile,
+    })
+  }
+
   logout = () => {
     this.setState({
       isLogged : false,
@@ -75,7 +88,7 @@ class App extends React.Component {
     <>
     <Header {...this.state} logout={this.logout} />
       {
-        this.state.isLogged ? <Authenticated updateUser={this.updateUser} logout = {this.logout} /> : <UnAuthenticated updateUser={this.updateUser} />
+        this.state.isLogged ? <Authenticated {...this.state} onUpdateProfile = {this.onUpdateProfile} updateUser={this.updateUser} logout = {this.logout} /> : <UnAuthenticated {...this.state} updateUser={this.updateUser} />
       }
     
     </>
@@ -107,6 +120,7 @@ function UnAuthenticated(props) {
 }
 
 function Authenticated(props) {
+  let user = props.user.user
   return (
     <>
    <Switch>
@@ -114,14 +128,19 @@ function Authenticated(props) {
        <Home />
      </Route>
      <Route path='/new-article' exact >
-       <Home />
+       <NewArticle />
      </Route>
      <Route path='/profile' exact >
-       <Home />
+       <Profile {...props} user = {user}  />
      </Route>
-     <Route path='/settings' exact >
-       <Home />
+     <Route path='/settings' exact  >
+       <Settings updateUser={props.updateUser} />
      </Route>
+
+      <Route path="/profiles/:username">
+        <OthersProfile {...props}  />
+      </Route>
+
      <Route path="/article/:slug" component={SingleArticle} exact/>
 
      <Route path="*">

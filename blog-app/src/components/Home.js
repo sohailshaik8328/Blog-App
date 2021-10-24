@@ -90,24 +90,24 @@ class Home extends Component {
         return (
            <>
              <section className="hero_section">
-                <div className="container">
+                <div className="my_container">
                     <section className="hero flex between">
                         <article className="hero_left flex-60 flex center align_center">
                             <h1 className="hero_heading     ">
                             <div className="hashnode_heading">Hashnode a shortened version of weblog</div> It is an online journal or informational website displaying information in reverse chronological order, with the latest posts appearing first, at the top. It is a platform where a writer or a group of writers share their views on an individual subject. There are many reasons to start a blog for personal use and only a handful of strong ones for business blogging. Blogging for business, projects, or anything else that might bring you money has a very straightforward.
                             </h1>
                         </article>
-                        <article className="hero_right flex-45">
+                        <article className="hero_right flex-40">
                                 <img className="undraw" src="/images/lotte.gif" alt="" />
                         </article>
                     </section>
                 </div>
             </section>
 
-            <div className="container">
+            <div className="my_container">
                 <div className="line"></div>
             </div>
-            <section className="container ">
+            <section className="my_container ">
                 <div className="flex">
                     <Link onClick={this.emptyTab} className={`global_feed_heading ${activeTag === "" && "active_tag_heading"}`} to="/">
                         <h2 >Global Feed</h2>
@@ -123,7 +123,7 @@ class Home extends Component {
                 </div>
             </section>
             <section className="total_section">
-                <div className="container">
+                <div className="my_container">
                    <div className="articles_tags_section flex between ">
                         <section className="articles_section flex-65 flex between wrap">                         
                                 <Link to="/">
@@ -133,6 +133,7 @@ class Home extends Component {
                     
                         
                         <section className="tags_section flex-35 ">
+                            <h2 className="popular_tags_heading">Popular Tags</h2>
                             {
                             tags?.tags?.map((eachTag)=>(
                                 eachTag === "" ? "" :  <button key={eachTag} className="tag_btn" value={eachTag} onClick={() => this.addTab(eachTag)}>{eachTag}</button>

@@ -24,8 +24,12 @@ function AllArticles(props) {
                                 </Link>
                            }
                             <div className="article_author_data flex align_center">
-                                <img className="author_img" src={article.author.image} alt="" />
-                                <h3 className="author_name">{article.author.username}</h3>
+                                <Link to={`/profiles/${article.author.username}`}>
+                                    <img className="author_img" src={article.author.image} alt="" />
+                                </Link>
+                                <Link to={`/profiles/${article.author.username}`}>
+                                     <h3 className="author_name">{article.author.username}</h3>
+                                </Link>
                             </div>
                         </article>
                     ))
