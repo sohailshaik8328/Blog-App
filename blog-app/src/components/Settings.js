@@ -58,7 +58,7 @@ class Settings extends React.Component {
             return res.json();
         })
         .then(({user}) => {
-            console.log(user)
+            // console.log(user)
             this.setState({
                 username,
                 image,
@@ -66,6 +66,8 @@ class Settings extends React.Component {
                 email,
                 password
             })
+            this.props.updateUser({user})
+            // this.props.onUpdateProfile(user)
             this.props.history.push('/profile')
         })
        }
@@ -79,7 +81,7 @@ class Settings extends React.Component {
             <div className="my_container">
                 <section className="article_form_section flex center align_center">
                     <form className="article_form" onSubmit={this.handleSubmit}>
-                        <h2 className="write_art_heading">Your Settings</h2>
+                        <h2 className="write_art_heading">Update Your Profile</h2>
                         <div className="flex between">
                             <div className=" art_inp_field flex-48">
                                 <label className="art_label" htmlFor="username">username</label>

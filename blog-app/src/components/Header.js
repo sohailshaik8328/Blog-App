@@ -5,12 +5,13 @@ import {withRouter} from "react-router"
 function Header(props) {
     // console.log(props.user.username)
     return (
-        props.isLogged ? <AuthenticatedHeader user={props.user} logout={props.logout} /> : <UnAuthenticatedHeader />
+        props.isLogged ? <AuthenticatedHeader  logout={props.logout} /> : <UnAuthenticatedHeader />
     )
 }
 
 function AuthenticatedHeader(props) {
-    let user = props.user
+    // let user = props.user.user
+    // console.log(user)
     // console.log(user.image)
     return (
         <>
@@ -33,6 +34,12 @@ function AuthenticatedHeader(props) {
                                 <li><a href="/profile">Profile</a></li>
                                 <li><NavLink activeClassName="nav_active"  to="/settings">Settings</NavLink></li>
                                 <li><NavLink  onClick={props.logout} to="/">Log Out</NavLink></li>
+                                {/* <NavLink to="/profile">
+                                <li className="flex align_center ">
+                                    <img className="author_img" src={user.image} alt="" />
+                                    <h2 className="author_name author_name_header">{user.username}</h2>
+                                </li>
+                                </NavLink> */}
                             </ul>
                         </nav>
                     </div>

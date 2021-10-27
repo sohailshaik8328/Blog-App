@@ -55,6 +55,7 @@ class Signin extends React.Component {
             })
         })
         .then(res => {
+            console.log(res)
             if(!res.ok) {
                 return res.json().then(({errors}) => {
                     
@@ -64,6 +65,7 @@ class Signin extends React.Component {
             return res.json();
         })
         .then(({user}) => {
+            console.log("sadfasdfasdf")
             this.props.updateUser(user)
             this.setState({
                 email : "",

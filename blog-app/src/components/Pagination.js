@@ -10,9 +10,9 @@ function Pagination(props) {
     }
     return (
         <div>
-            <button onClick={() => updateCurrentPageIndex(activePageIndex - 1 < 1 ? 1 : activePageIndex - 1 )} className="pagination_btns"> {"<"} </button>
+            <button onClick={() => updateCurrentPageIndex(activePageIndex - 1 < 1 ? 1 : activePageIndex - 1 )} className="pagination_btns "> {"<"} </button>
             {
-                PagesArray.map((page) => <button key={page} onClick={() => updateCurrentPageIndex(page)} className={`pagination_btns ${activePageIndex === page ? "active_pagination" : ""}`}>{page}</button>)
+                PagesArray.map((page) => <button key={page} onClick={() => updateCurrentPageIndex(page)} className={`pagination_btns  ${activePageIndex === page ? "active_pagination" : ""}`}>{page}</button>)
 
             }
             <button onClick={() => updateCurrentPageIndex(activePageIndex + 1 > numberOfPages ? numberOfPages : activePageIndex + 1)} className="pagination_btns">{">"}</button>

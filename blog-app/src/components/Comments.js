@@ -54,10 +54,34 @@ const moment = require('moment');
             console.log(comment)
             this.setState({
                 comment : ""
-            }, this.props.getComments)
+            }, this.props.getComments, this.handleDeleteComment)
             this.props.history.push(`/article/${slug}`)
         })
        }
+    }
+
+    handleDeleteComment = (id) => {
+        // console.log(id)
+        let slug = this.props.slug;
+        let url = ArticlesUrl + `/${slug}/comments/${id}`;
+        let key = localStorage[localStorageKey];
+        fetch(url, {
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json",
+                Authorization : `Token ${key}`
+            }
+        })
+        .then(res => {
+            if(!res.ok) {
+                return res.json().then(({errors}) => {
+                    return Promise.reject(errors)
+                })
+            }
+            this.props.getComments();
+        })
+        .catch(err => this.setState({err}))
+
     }
 
 
@@ -88,19 +112,19 @@ const moment = require('moment');
                                 {
                                     allComments.map((eachComment) => (
                                         // console.log(eachComment.body)
-                                        <div className="comment_card">
+                                        <div className="comment_card" key={eachComment.id}>
                                             <div>
                                                  <h2 className="comment_body">{eachComment.body}</h2>
                                             </div>
                                         
                                             <div className="comment_author_info flex align_center between">
-                                                <article className="flex align_center">
+                                                <article className="flex align_center  ">
                                                    <img className="author_img" src={eachComment.author.image} alt={eachComment.author.image} />
                                                    <h2 className="author_name">{eachComment.author.username}</h2>
                                                    <h3 className="comment_date">{moment(eachComment.createdAt).add(1, 'day').format('LLL')}</h3>
                                                 </article>
                                                 <article>
-                                                    <img className="delete_gif" src="/images/delete.gif" alt="" />
+                                                    <img onClick={() => this.handleDeleteComment(eachComment.id)} className="delete_gif" src="/images/delete.gif" alt="" />
                                                 </article>
                                             </div>
                                         </div>

@@ -125,7 +125,7 @@ a {
 }
 .header_right {
   /* border: 1px solid black; */
-  margin-right: 7rem;
+  margin-right: 6rem;
 }
 
 .nav li {
@@ -142,19 +142,14 @@ a {
 }
 .header {
   padding: 1.3rem;
-
-  /* border: 1px solid black; */
 }
 /* Hero */
-.hero {
-  /* border: 1px solid black; */
-  margin: 1rem;
-}
+
 .hero_heading {
   font-size: 1.5rem;
   line-height: 1.5;
   /* margin-top: 2rem; */
-  width: 90%;
+  width: 85%;
   
 }
 .undraw {
@@ -169,6 +164,7 @@ a {
 box-shadow: -2px -2px 6px rgba(128, 128, 128, 0.356), 2px 2px 6px rgba(128, 128, 128, 0.37);
   width: 25%;
   padding: 3rem 2rem;
+  border-radius: 20px;
 }
 .label {
   display: block;
@@ -184,6 +180,7 @@ box-shadow: -2px -2px 6px rgba(128, 128, 128, 0.356), 2px 2px 6px rgba(128, 128,
   font-size: 1.3rem;
   margin-left: 1rem;
   border: 1px solid rgba(128, 128, 128, 0.329);
+  border-radius: 6px;
 }
 .input::placeholder {
   font-size: 1.3rem;
@@ -369,10 +366,12 @@ box-shadow: -2px -2px 6px rgba(128, 128, 128, 0.356), 2px 2px 6px rgba(128, 128,
 }
 .pagination_btns {
   font-size: 1.3rem;
-  padding: 0.3rem 0.8rem;
-  margin-left: 0.3rem;
+  margin-left: 0.5rem;
+  width: 45px;
+  height: 45px;
   border: 0;
   outline: 0;
+  border-radius: 50%;
   cursor: pointer;
   border: 2px solid #62C34D;
   background-color: #ffffff;
@@ -496,14 +495,14 @@ box-shadow: -2px -2px 6px rgba(128, 128, 128, 0.356), 2px 2px 6px rgba(128, 128,
 .profile_card {
   position: absolute;
   /* top: 0; */
-  left: 20%;
-  bottom: -8rem;
+  left: 38%;
+  bottom: -10rem;
   text-align: center;
 }
 
 .profile_articles_section {
   /* border: 1px solid black; */
-  margin-top: 10rem;
+  margin-top: 11rem;
   margin-left: 5rem;
 }
 .profile_article {
@@ -546,7 +545,176 @@ box-shadow: -2px -2px 6px rgba(128, 128, 128, 0.356), 2px 2px 6px rgba(128, 128,
   }
   .delete_gif {
     width: 100px;
+    cursor: pointer;
   }
   .comment_date {
     margin-left: 1rem;
   }
+  .edit_gif {
+    width: 40px;
+    cursor: pointer;
+
+  }
+  .follow_btn {
+    margin: 0.5rem;
+    border-radius: 50px;
+    border: 2px solid black;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  .follow_btn:hover {
+    background-color: #000;
+    color: #ffffff;
+  }
+  .author_name_header {
+    font-size: 1.1rem;
+  }
+  .heart {
+    font-size: 2rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.heart:hover {
+  color: red;
+}
+.active_heart {
+color: red;
+}
+
+@media screen and (max-width : 768px) {
+  html {
+    font-size: 14px;
+  }
+  .my_container {
+    width: 100%;
+  } 
+  .medium_wrap { 
+    flex-wrap: wrap;
+  }
+  .flex-48, .flex-30, .flex-20, .flex-40, .flex-35, .flex-60
+  .flex-50, .flex-45, .flex-55, .flex-70, .flex-65, .flex-25 {
+    flex: 0 1 100%;
+  }
+  .hero_left {
+    width: 100%;
+    /* border: 1px solid black; */
+    /* padding: 1rem; */
+    padding-left: 4rem;
+  }
+  .hero_heading {
+    width: 100%;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+  }
+  .hashnode_heading {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pagination_btns {
+    width: 40px;
+    height: 40px;
+  }
+  .profile_article {
+    width: 80%;
+  }
+  .form {
+    width: 80%;
+    box-shadow: -2px -2px 10px rgba(128, 128, 128, 0.527), 2px 2px 10px rgba(128, 128, 128, 0.493);
+  }
+  .nav li {
+    font-size: 1rem;
+    margin-right: 1.5rem;
+  }
+  .header_right {
+    width: 100%;
+    margin-right: 0;
+  }
+  .total_single_article .my_container {
+    padding: 2rem;
+    width: 90%;
+  }
+
+  .comment_card {
+    margin-left: 2rem;
+    width: 80%;
+  }
+  .article_form {
+    width: 100%;
+  }
+  .vector_image {
+    height: 200px;
+  }
+  .undraw {
+    width: 70%;
+  }
+  .hero {
+    text-align: center;
+  }
+  .hero_left {
+    /* border: 1px solid black; */
+    margin:  auto;
+  }
+}
+
+@media screen and (max-width : 400px) {
+  html {
+    font-size: 10px;
+  }
+  .logo {
+    width: 50%;
+  }
+  .pagination_btns {
+     width: 18px;
+     height: 18px;
+     font-size: 0.8rem;
+  }
+  .nav li {
+    font-size: 0.8rem;
+    margin-right: 0.3rem;
+  }
+  .comment_card {
+    /* width: 50%; */
+    border: 1px solid black;
+  }
+ .total_single_article .my_container {
+    padding: 2rem;
+    width: 88%;
+  }
+  .author_img {
+    widows: 20px;
+    height: 20px;
+  }
+  .small_wrap { 
+    flex-wrap: wrap;
+  }
+  .comment_date {
+    font-size: 0.9rem;
+  }
+  .delete_gif {
+    width: 50px;
+  }
+  .vector_image {
+    height: 150px;
+  }
+  .profile_image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    border: 4px solid #388888;
+    padding: 0.1rem;
+  }
+  .profile_username {
+    font-size: 1.5rem;
+  }
+  .profile_bio {
+    font-size: 1.3rem;
+  }
+  .profile_card {
+    position: absolute;
+    /* top: 0; */
+    left:25%;
+    bottom: -7rem;
+    text-align: center;
+  }
+}
