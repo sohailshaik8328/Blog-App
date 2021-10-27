@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 import { ArticlesUrl, localStorageKey, TagsUrl} from './utils/constant';
@@ -52,7 +51,6 @@ class Home extends Component {
             return res.json()
         })
         .then(data => {
-            // console.log(data)
             this.setState({
                 data : data.articles,
                 error : "",
@@ -79,7 +77,6 @@ class Home extends Component {
         let offset = (this.state.activePageIndex - 1) * limit;
         let tag = this.state.activeTag
 
-        // let url = ArticlesUrl + `/feed?offset=${offset}&limit=${limit} `
         let url = ArticlesUrl + `/feed?offset=${offset}&limit=${limit}` + (tag && `&tag=${tag}`)
         let key = localStorage[localStorageKey];
         if(key) {
@@ -92,7 +89,6 @@ class Home extends Component {
             })
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
                 this.setState({
                     personalFeed : data.articles,
                     activeTag : "Personal Feed",
@@ -105,8 +101,6 @@ class Home extends Component {
     render() {
         let key = localStorage[localStorageKey];
         let {data,tags, activeTag, error, articlesCount, articlesPerPage, activePageIndex, personalFeed} = this.state;
-        // console.log(personalFeed)
-        // console.log(tags?.tags?.forEach(each => console.log(each)))
         if(error) {
             return <p className="data_fetch_error">{error}</p>
         }
@@ -119,11 +113,6 @@ class Home extends Component {
         if(data.length < 1 && personalFeed.length < 1) {
             return <h2 className="article_not_found">No Articles Found!</h2>
         }
-
-        // if(personalFeed.length < 1) {
-        //     return <h2 className="article_not_found">No Articles Found!</h2>
-
-        // }
         return (
            <>
              <section className="hero_section">

@@ -31,7 +31,7 @@ class Settings extends React.Component {
         event.preventDefault();
         let key = localStorage[localStorageKey];
         let url = BaseUrl + "user";
-        let {username, image, bio, email, password, errors} = this.state;
+        let {username, image, bio, email, password} = this.state;
         if(key) {
         fetch(url, {
             method : "PUT",
@@ -58,7 +58,6 @@ class Settings extends React.Component {
             return res.json();
         })
         .then(({user}) => {
-            // console.log(user)
             this.setState({
                 username,
                 image,
@@ -67,7 +66,6 @@ class Settings extends React.Component {
                 password
             })
             this.props.updateUser({user})
-            // this.props.onUpdateProfile(user)
             this.props.history.push('/profile')
         })
        }

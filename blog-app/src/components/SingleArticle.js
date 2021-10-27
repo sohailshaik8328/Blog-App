@@ -30,16 +30,6 @@ class SingleArticle extends React.Component {
             this.handleMyFavoriteArticles()
         }
     }
-    // componentDidUpdate() {
-    //     // console.log(this.state.myFavoriteArticle)
-    //     if(this.state.myFavoriteArtcomponentDidMounticle.favorited === true) {
-
-    //         this.handleMyFavoriteArticles()
-    //     } else {
-    //         return null
-    //     }
-        
-    // }
 
     getComments = () => {
         let slug = this.props.match.params.slug;
@@ -52,7 +42,6 @@ class SingleArticle extends React.Component {
             return res.json();
         })
         .then(comments => {
-            // console.log(comments.comments);
             this.setState({
                 allComments : comments.comments
             })
@@ -63,7 +52,6 @@ class SingleArticle extends React.Component {
         let slug = this.props.match.params.slug;
         let url = ArticlesUrl + `/${slug}/favorite`;
         let key = localStorage[localStorageKey];
-        // console.log(slug)
         if(key) {
             fetch(url, {
                 method: "POST",
@@ -81,7 +69,6 @@ class SingleArticle extends React.Component {
                 return res.json();
             })
             .then(article => {
-                // console.log(article.article)
                 this.setState({
                     myFavoriteArticle : article.article,
                 })
@@ -93,13 +80,10 @@ class SingleArticle extends React.Component {
 
     render() {
         let {singleArticle, allComments, key, myFavoriteArticle} = this.state;
-        // console.log(key)
        let user = this.props.user
-    //    console.log(user.token)
         if(singleArticle.length < 1) {
             return <Loader />
         }
-        // console.log(this.props)
         return (
             <>
             
@@ -112,14 +96,7 @@ class SingleArticle extends React.Component {
 }
 
 function AuthenticatedSingleArticle(props) {
-    // console.log(props)
-
-    let key = localStorage[localStorageKey]
-    let {singleArticle, allComments, getComments, slug, user,handleMyFavoriteArticles, myFavoriteArticle} = props
-    // console.log(myFavoriteArticle.favorited)
-    // console.log(slug)
-    // console.log(key, "this is key")
-    // console.log(user.token, "this is token")
+    let {singleArticle, allComments, getComments, slug, handleMyFavoriteArticles, myFavoriteArticle} = props
     
     return (
         <>
@@ -147,12 +124,6 @@ function AuthenticatedSingleArticle(props) {
                     </section>
                     
                    
-                    {/* <section>
-                       <button className="form_btn article_btn">Edit</button>
-                       <button className="form_btn article_btn">Delete</button>
-                   </section>  
-                    */}
-
                     <div className="line comment_line"></div>
                     <section className=" flex center align_center">
                         <Comments slug={slug} getComments={getComments} allComments={allComments}/>
@@ -186,12 +157,8 @@ function UnAuthenticatedSingleArticle(props) {
                         <p className="single_article_create">created at :  {moment(singleArticle?.article?.createdAt).add(1,   'day').format('LLL')}</p>
                         <p className="single_article_update">updated at :  {moment(singleArticle?.article?.updatedAt).add(1,   'day').format('LLL')}</p>
                     </section>
-                    {/* <div className="line comment_line"></div>
-                    <section className=" flex center align_center">
-                        <Comments slug={this.props.match.params.slug} getComments={this.getComments} allComments={allComments}/>
-                    </section> */}
+
                     <section>
-                        {/* <h2>Login to add comments</h2> */}
                     </section>
                  </div>
              </section>

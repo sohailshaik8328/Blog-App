@@ -83,10 +83,8 @@ class App extends React.Component {
  render() {
    if(this.state.isVerified) {
      return  <Loader />
-    //  <img className="gif" src="/images/login2.gif" alt="login Gif" />
    }
-  //  let user = this.state.user.user
-  //  console.log(user.username)
+
   return (
     <>
     <Header {...this.state}  logout={this.logout} />
@@ -100,8 +98,7 @@ class App extends React.Component {
 }
 
 function UnAuthenticated(props) {
-  // let user = props.user.user
-  // console.log(user)
+
   return (
     <>
    <Switch>
@@ -116,10 +113,6 @@ function UnAuthenticated(props) {
      </Route>
      <Route path="/article/:slug" component={SingleArticle} exact/>
 
-     {/* <Route path="/profiles/:username">
-        <OthersProfile {...props} user={user}   />
-      </Route> */}
-
      <Route path="*">
        <NoMatch />
      </Route>
@@ -130,7 +123,6 @@ function UnAuthenticated(props) {
 
 function Authenticated(props) {
   let user = props.user.user
-  // console.log(props.user)
   return (
     <>
    <Switch>
@@ -150,7 +142,6 @@ function Authenticated(props) {
        <UpdateArticle {...props} />
      </Route>
 
-     {/* <Route path="/article/:slug" component={SingleArticle} exact/> */}
      <Route path="/article/:slug" exact>
        <SingleArticle  user={user} />
      </Route>

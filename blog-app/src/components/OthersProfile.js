@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Loader from './Loader';
 import { ArticlesUrl, BaseUrl, localStorageKey } from './utils/constant';
 import { withRouter } from 'react-router';
 import NewLoader from './NewLoader';
@@ -20,11 +19,9 @@ class OthersProfile extends Component {
         
         let username = this.props.match.params.username
         let url = BaseUrl + `profiles/${username}`
-        // console.log(url)
         fetch(url)
         .then(res => res.json())
         .then(profiles => {
-            // console.log(profiles);
             this.setState({
                 profiles : profiles.profile
             })
@@ -33,12 +30,8 @@ class OthersProfile extends Component {
     }
 
     fetchMyArticles = () => {
-        // let {user} = this.props;
         let username = this.props.match.params.username
-        // console.log(username)
-        // console.log(username)
          let url = ArticlesUrl + `?author=${username}`
-        //  console.log(url)
         fetch(url)
         .then(res => {
             if(!res.ok) {
@@ -47,7 +40,6 @@ class OthersProfile extends Component {
             return res.json();
         })
         .then(data => {
-            // console.log(data.articles)
             this.setState({
                 myArticles : data.articles,
                 activeTab : "myarticles"
@@ -58,11 +50,9 @@ class OthersProfile extends Component {
 
 
      fetchFavoritedArticles = () => {
-        // let {user} = this.props;
         let username = this.props.match.params.username
         console.log(username)
          let url = ArticlesUrl + `?favorited=${username}`
-        //  console.log(url)
         fetch(url)
         .then(res => {
             if(!res.ok) {
@@ -71,7 +61,6 @@ class OthersProfile extends Component {
             return res.json();
         })
         .then(data => {
-            // console.log(data.articles)
             this.setState({
                 favoriteArticles : data.articles,
                 activeTab : "favorited"
@@ -85,11 +74,8 @@ class OthersProfile extends Component {
 
     handleFollow = () => {
         let username = this.props.match.params.username
-        // console.log(username)
         let url = BaseUrl + `profiles/${username}/follow`;
         let key = localStorage[localStorageKey];
-        // console.log(key)
-        // console.log(url)
         if(key) {
             fetch(url, {
                 method : "POST",
@@ -110,11 +96,8 @@ class OthersProfile extends Component {
 
     handleUnFollow = () => {
         let username = this.props.match.params.username
-        // console.log(username)
         let url = BaseUrl + `profiles/${username}/follow`;
         let key = localStorage[localStorageKey];
-        // console.log(key)
-        // console.log(url)
         if(key) {
             fetch(url, {
                 method : "DELETE",
@@ -178,10 +161,6 @@ class OthersProfile extends Component {
 
 function MyArticles(props) {
     let data = props.myArticles;
-    // console.log(data, "myarticles")
-    // if(props.myArticles.length < 1) {
-    //     return <h2>No articles found</h2>
-    // }
     if(!data.length) {
         return <NewLoader />
     }
@@ -196,12 +175,6 @@ function MyArticles(props) {
                                     <h2 className="article_title">{article.title}</h2>
                                     <p className="article_desc">{article.description}</p>
                                 </div> 
-                                {/* <div className=" flex align_center center">
-                                    <Link to={`article/${article.slug}/update`}>
-                                         <img className="edit_gif " src="/images/edit.png" alt="" />
-                                    </Link>
-                                    <img onClick={() => props.handleDeleteArticle(article.slug)} className="delete_gif" src="/images/delete.gif" alt="" />
-                                </div> */}
                            </div>
                    
                            {
@@ -228,7 +201,6 @@ function MyArticles(props) {
 
 function FavoritedArticles(props) {
     let data = props.favoriteArticles;
-    // console.log(data , "favorite")
     if(!data.length) {
         return <NewLoader />
     }
@@ -242,13 +214,7 @@ function FavoritedArticles(props) {
                                 <div className="article_data">
                                     <h2 className="article_title">{article.title}</h2>
                                     <p className="article_desc">{article.description}</p>
-                                </div> 
-                                {/* <div className=" flex align_center center">
-                                    <Link to={`article/${article.slug}/update`}>
-                                         <img className="edit_gif " src="/images/edit.png" alt="" />
-                                    </Link>
-                                    <img onClick={() => props.handleDeleteArticle(article.slug)} className="delete_gif" src="/images/delete.gif" alt="" />
-                                </div> */}
+                                </div>
                            </div>
                    
                            {

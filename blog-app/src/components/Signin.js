@@ -19,7 +19,6 @@ class Signin extends React.Component {
 
     handleChange = (event) => {
         let {name, value} = event.target;
-        // console.log(event.target.value)
         let errors = {...this.state.errors};
 
         validate(errors, name, value)
@@ -33,11 +32,7 @@ class Signin extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        
-        // this.login();
-
         let url = BaseUrl + "users/login"
-        // console.log(url)
         let {email, password} = this.state;
         fetch(url, {
             method : "POST",
@@ -71,7 +66,6 @@ class Signin extends React.Component {
                 email : "",
                 password : ""
             })
-            // console.log(this.props)
             this.props.history.push('/')
             console.log("User successfully logged in", user);
             localStorage.setItem(localStorageKey, user.token)
@@ -92,7 +86,6 @@ class Signin extends React.Component {
 
     render() {
         let {email, password, errors} = this.state;
-        // console.log(password)
         return (
             <>
               <section>
