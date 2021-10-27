@@ -50,7 +50,7 @@ class Signin extends React.Component {
             })
         })
         .then(res => {
-            console.log(res)
+            // console.log(res)
             if(!res.ok) {
                 return res.json().then(({errors}) => {
                     
@@ -60,15 +60,14 @@ class Signin extends React.Component {
             return res.json();
         })
         .then(({user}) => {
-            console.log("sadfasdfasdf")
             this.props.updateUser(user)
             this.setState({
                 email : "",
                 password : ""
             })
-            this.props.history.push('/')
-            console.log("User successfully logged in", user);
+            // console.log("User successfully logged in", user);
             localStorage.setItem(localStorageKey, user.token)
+            this.props.history.push('/')
         })
         .catch(errors => {
             this.setState(prevState => {

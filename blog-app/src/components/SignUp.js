@@ -41,7 +41,7 @@ class SignUp extends React.Component {
             method : "POST",
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify({
-                "user": {
+                user: {
                     username,
                     email,
                     password
@@ -57,15 +57,15 @@ class SignUp extends React.Component {
             return res.json()
         })
         .then(({user}) => {
-            this.props.updateUser(user);
+            // this.props.updateUser(user);
             this.setState({
                 username : "",
                 email : "",
                 password : ""
             })
+            // console.log("User successfully register", user); 
+            
             this.props.history.push('/signin');
-            console.log("User successfully register", user);
-
         })
         .catch(errors => this.setState({errors}))
     }

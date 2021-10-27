@@ -105,8 +105,8 @@ const moment = require('moment');
                                                  <h2 className="comment_body">{eachComment.body}</h2>
                                             </div>
                                         
-                                            <div className="comment_author_info flex align_center between">
-                                                <article className="flex align_center  ">
+                                            <div className=" flex align_center between">
+                                                <article className="comment_author_info flex align_center  ">
                                                    <img className="author_img" src={eachComment.author.image} alt={eachComment.author.image} />
                                                    <h2 className="author_name">{eachComment.author.username}</h2>
                                                    <h3 className="comment_date">{moment(eachComment.createdAt).add(1, 'day').format('LLL')}</h3>

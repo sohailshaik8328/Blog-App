@@ -134,7 +134,7 @@ class OthersProfile extends Component {
                            {
                                myUsername !== propsUsername ? 
                                 <div className="flex align_center center">
-                                    <h2 onClick={this.handleFollow} className="follow_btn">{followUser ? "Following" : "Follow"}</h2> |    
+                                    <h2 onClick={this.handleFollow} className="follow_btn">{followUser === "follow" ? "Following" : "Follow"}</h2> |    
                                     <h2 onClick={this.handleUnFollow} className="follow_btn">{followUser === "unfollow" ? "Follow" : "Un Follow"}</h2>
                                 </div> : ""
                            }

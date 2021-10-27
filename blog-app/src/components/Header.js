@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 import {withRouter} from "react-router"
 
 function Header(props) {
+    // console.log(props.isLogged)
     return (
         props.isLogged ? <AuthenticatedHeader  logout={props.logout} /> : <UnAuthenticatedHeader />
     )

@@ -92,9 +92,9 @@ import { withRouter } from 'react-router'
                     <div className="my_container">
                         <div>
                             <article className="banner_profile">
-                                <img className="vector_image" src="/images/keyboard_banner.gif" alt="" />
+                                <img className="vector_image flex center align_center" src="/images/keyboard_banner.gif" alt="" />
                                 <article className="profile_card">
-                                    <img className="profile_image" src={user.image} alt="" />
+                                    <img className="profile_image" src={user.image ? user.image : "/images/user-male.png"} alt="" />
                                     <h2 className="profile_username" >{user.username}</h2>
                                     <p className="profile_bio">{user.bio}</p>
                                 </article>
