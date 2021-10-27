@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import ReactMarkdown from 'react-markdown'
 import { ArticlesUrl, localStorageKey } from './utils/constant';
 
 class NewArticle extends React.Component {
