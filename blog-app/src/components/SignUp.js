@@ -118,18 +118,18 @@ class SignUp extends React.Component {
               <section>
                   <div className="container">
                       <div className="form_div flex align_center center">
-                        <form action="" onSubmit={this.handleSubmit}>
+                        <form className="form" onSubmit={this.handleSubmit}>
                         <h2 className="form_heading">Sign Up</h2>
-                            <label htmlFor="username">Username</label>
-                            <input name="username" value={username} onChange={this.handleChange} type="username" placeholder="Enter your username"  />
+                            <label className="label" htmlFor="username">Username</label>
+                            <input className="input"  name="username" value={username} onChange={this.handleChange} type="username" placeholder="Enter your username"  />
                             <p className="error">{errors.username}</p>
-                            <label htmlFor="email">Email</label>
-                            <input name="email" value={email} onChange={this.handleChange} type="email" placeholder="Enter your email"  />
+                            <label className="label"  htmlFor="email">Email</label>
+                            <input className="input"  name="email" value={email} onChange={this.handleChange} type="email" placeholder="Enter your email"  />
                             <p className="error">{errors.email}</p>
-                            <label htmlFor="password">Password</label>
-                            <input name="password" value={password} onChange={this.handleChange} type="password" placeholder="Enter your Password"  />
+                            <label className="label"  htmlFor="password">Password</label>
+                            <input className="input"   name="password" value={password} onChange={this.handleChange} type="password" placeholder="Enter your Password"  />
                             <p className="error">{errors.password}</p>
-                            <input disabled={errors.username || errors.email || errors.password} type="submit" value="Signup" className="input_btn"  />
+                            <input disabled={errors.username || errors.email || errors.password} type="submit" value="Signup" className="input_btn input"  />
                             <Link to="/signin">
                                 <button className="form_btn">Login</button>
                             </Link>

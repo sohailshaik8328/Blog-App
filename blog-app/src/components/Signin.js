@@ -30,46 +30,6 @@ class Signin extends React.Component {
         })
     }
 
-    // login = () => {
-    //     let url = BaseUrl + "users/login"
-    //     // console.log(url)
-    //     let {email, password, errors} = this.state;
-    //     fetch(url, {
-    //         method : "POST",
-    //         mode: 'cors', 
-    //         cache: 'no-cache', 
-    //         credentials: 'same-origin', 
-    //         headers : {'Content-Type' : 'application/json'},
-    //         redirect: 'follow', 
-    //         referrerPolicy: 'no-referrer',
-    //         body : JSON.stringify({
-    //             "user": {
-    //                email,
-    //                password
-    //             }
-    //         })
-    //     })
-    //     .then(res => {
-    //         if(!res.ok) {
-    //             return res.json().then(({errors}) => {
-    //                 this.setState({errors})
-    //                 return Promise.reject(errors);
-    //             })
-    //         }
-    //         return res.json();
-    //     })
-    //     .then((userInfo) => {
-    //         this.setState({
-    //             email : "",
-    //             password : ""
-    //         })
-    //         // console.log(this.props)
-    //         this.props.history.push('/')
-    //         console.log("User successfully logged in", userInfo);
-    //         localStorage.setItem(localStorageKey, userInfo.user.token)
-    //     })
-    //     .catch(err => this.setState({errors}))
-    // }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -78,7 +38,7 @@ class Signin extends React.Component {
 
         let url = BaseUrl + "users/login"
         // console.log(url)
-        let {email, password, errors} = this.state;
+        let {email, password} = this.state;
         fetch(url, {
             method : "POST",
             mode: 'cors', 
@@ -95,6 +55,7 @@ class Signin extends React.Component {
             })
         })
         .then(res => {
+            console.log(res)
             if(!res.ok) {
                 return res.json().then(({errors}) => {
                     
@@ -104,6 +65,7 @@ class Signin extends React.Component {
             return res.json();
         })
         .then(({user}) => {
+            console.log("sadfasdfasdf")
             this.props.updateUser(user)
             this.setState({
                 email : "",
@@ -136,15 +98,15 @@ class Signin extends React.Component {
               <section>
                   <div className="container">
                       <div className="form_div flex align_center center">
-                        <form  onSubmit={this.handleSubmit }>
+                        <form className='form' onSubmit={this.handleSubmit }>
                             <h2 className="form_heading">Log In</h2>
-                            <label htmlFor="email">Email</label>
-                            <input onChange={this.handleChange} name="email" value={email}  type="email" placeholder="Enter your email"  />
+                            <label className="label" htmlFor="email">Email</label>
+                            <input className="input" onChange={this.handleChange} name="email" value={email}  type="email" placeholder="Enter your email"  />
                             <p className="error">{errors.email}</p>
-                            <label htmlFor="password">Password</label>
-                            <input onChange={this.handleChange} name="password" value={password} type="password" placeholder="Enter your Password"  />
+                            <label className="label" htmlFor="password">Password</label>
+                            <input className="input" onChange={this.handleChange} name="password" value={password} type="password" placeholder="Enter your Password"  />
                             <p className="error">{errors.password}</p>
-                            <input disabled={errors.email || errors.password} type="submit" value="Log in" className="input_btn"  /> 
+                            <input disabled={errors.email || errors.password} type="submit" value="Log in" className="input_btn input"  /> 
                             <Link to="/signup">
                                 <button className="form_btn">Signup</button>
                             </Link>

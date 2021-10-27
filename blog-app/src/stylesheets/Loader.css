@@ -57,6 +57,9 @@
     }
   }
    */
+   /* body {
+     height: 100vh;
+   } */
 
    #pacman1 {
     display: block;
