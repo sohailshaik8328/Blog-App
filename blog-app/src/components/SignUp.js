@@ -32,56 +32,16 @@ class SignUp extends React.Component {
         })
     }
 
-    // signUp = () => {
-    //     let url = BaseUrl + "users"
-    //     // console.log(url)
-    //     let {username, email, password, errors} = this.state;
-    //     fetch(url, {
-    //         method : "POST",
-    //         headers : {'Content-Type' : 'application/json'},
-    //         body : JSON.stringify({
-    //             "user": {
-    //                 username,
-    //                 email,
-    //                 password
-    //             }
-    //         })
-    //     })
-    //     .then(res => {
-    //         if(!res.ok) {
-    //             res.json().then(({errors}) => {
-    //                 this.setState({errors})
-    //                 // return Promise.reject(errors)
-    //             })
-    //             throw new Error('Sign up not successfull')
-    //         }
-    //         return res.json()
-    //     })
-    //     .then(({user}) => {
-    //         this.setState({
-    //             username : "",
-    //             email : "",
-    //             password : ""
-    //         })
-    //         this.props.history.push('/signin');
-    //         console.log("User successfully register", user);
-
-    //     })
-    //     .catch(err => console.log(err))
-    // }
-
     handleSubmit = (event) => {
         event.preventDefault();
-        // this.signUp()
 
         let url = BaseUrl + "users"
-        // console.log(url)
-        let {username, email, password, errors} = this.state;
+        let {username, email, password} = this.state;
         fetch(url, {
             method : "POST",
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify({
-                "user": {
+                user: {
                     username,
                     email,
                     password
@@ -93,20 +53,19 @@ class SignUp extends React.Component {
                return res.json().then(({errors}) => {
                     return Promise.reject(errors)
                 })
-                // throw new Error('Sign up not successfull')
             }
             return res.json()
         })
         .then(({user}) => {
-            this.props.updateUser(user);
+            // this.props.updateUser(user);
             this.setState({
                 username : "",
                 email : "",
                 password : ""
             })
+            // console.log("User successfully register", user); 
+            
             this.props.history.push('/signin');
-            console.log("User successfully register", user);
-
         })
         .catch(errors => this.setState({errors}))
     }

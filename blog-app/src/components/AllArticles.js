@@ -5,10 +5,6 @@ import { withRouter } from 'react-router';
 
 function AllArticles(props) {
   let {data, personalFeed} = props
-//   console.log(personalFeed)
-//   if(data.length < 1) {
-//       return <h2>No articles found</h2>
-//   }
         return (
             <div className="flex wrap between">
                  {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { ArticlesUrl, localStorageKey } from './utils/constant'
 import { Link } from 'react-router-dom'
-import Loader from './Loader'
 import NewLoader from './NewLoader'
 import { withRouter } from 'react-router'
 
@@ -15,15 +14,12 @@ import { withRouter } from 'react-router'
      }
      componentDidMount() {
         this.state.activeTab === "myarticles" ? this.fetchMyArticles() : this.fetchFavoritedArticles()
-        // this.handleDeleteArticle()
      }
 
      fetchMyArticles = () => {
         let {user} = this.props;
         let username = user.username
-        // console.log(username)
          let url = ArticlesUrl + `?author=${username}`
-        //  console.log(url)
         fetch(url)
         .then(res => {
             if(!res.ok) {
@@ -32,7 +28,6 @@ import { withRouter } from 'react-router'
             return res.json();
         })
         .then(data => {
-            // console.log(data.articles)
             this.setState({
                 myArticles : data.articles,
                 activeTab : "myarticles"
@@ -45,9 +40,7 @@ import { withRouter } from 'react-router'
      fetchFavoritedArticles = () => {
         let {user} = this.props;
         let username = user.username
-        // console.log(username)
          let url = ArticlesUrl + `?favorited=${username}`
-        //  console.log(url)
         fetch(url)
         .then(res => {
             if(!res.ok) {
@@ -56,7 +49,6 @@ import { withRouter } from 'react-router'
             return res.json();
         })
         .then(data => {
-            // console.log(data.articles)
             this.setState({
                 favoriteArticles : data.articles,
                 activeTab : "favorited"
@@ -71,7 +63,6 @@ import { withRouter } from 'react-router'
     handleDeleteArticle = (slug) => {
         let url = ArticlesUrl + `/${slug}`;
         let key = localStorage[localStorageKey]
-        // console.log(url)
         if(key) {
             fetch(url, {
                 method : "DELETE",
@@ -101,9 +92,9 @@ import { withRouter } from 'react-router'
                     <div className="my_container">
                         <div>
                             <article className="banner_profile">
-                                <img className="vector_image" src="/images/keyboard_banner.gif" alt="" />
+                                <img className="vector_image flex center align_center" src="/images/keyboard_banner.gif" alt="" />
                                 <article className="profile_card">
-                                    <img className="profile_image" src={user.image} alt="" />
+                                    <img className="profile_image" src={user.image ? user.image : "/images/user-male.png"} alt="" />
                                     <h2 className="profile_username" >{user.username}</h2>
                                     <p className="profile_bio">{user.bio}</p>
                                 </article>
@@ -130,10 +121,6 @@ import { withRouter } from 'react-router'
 
 function MyArticles(props) {
     let data = props.myArticles;
-    // console.log(data, "myarticles")
-    // if(props.myArticles.length < 1) {
-    //     return <h2>No articles found</h2>
-    // }
     if(!data.length) {
         return <NewLoader />
     }
@@ -180,7 +167,6 @@ function MyArticles(props) {
 
 function FavoritedArticles(props) {
     let data = props.favoriteArticles;
-    // console.log(data , "favorite")
     if(!data.length) {
         return <NewLoader />
     }
@@ -195,12 +181,6 @@ function FavoritedArticles(props) {
                                     <h2 className="article_title">{article.title}</h2>
                                     <p className="article_desc">{article.description}</p>
                                 </div> 
-                                {/* <div className=" flex align_center center">
-                                    <Link to={`article/${article.slug}/update`}>
-                                         <img className="edit_gif " src="/images/edit.png" alt="" />
-                                    </Link>
-                                    <img onClick={() => props.handleDeleteArticle(article.slug)} className="delete_gif" src="/images/delete.gif" alt="" />
-                                </div> */}
                            </div>
                    
                            {

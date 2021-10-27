@@ -11,7 +11,6 @@ function NewLoader() {
                     <span></span>
                     <span></span>
                 </div>
-                {/* <h5>Dots5</h5> */}
             </div>
        </div>
     )

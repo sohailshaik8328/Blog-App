@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router';
 import { ArticlesUrl, localStorageKey } from './utils/constant';
-import { Link } from 'react-router-dom';
 const moment = require('moment');
 
 
@@ -10,12 +9,6 @@ const moment = require('moment');
      state = {
         comment : []
      }
-
-     componentDidMount() {
-        // this.getComments()
-
-     }
-
      handleChange = ({target}) => {
         let {name, value} = target;
 
@@ -27,10 +20,8 @@ const moment = require('moment');
         event.preventDefault();
         let {comment} = this.state;
         let slug = this.props.slug;
-        let key = localStorage[localStorageKey]
-        let url = ArticlesUrl + `/${slug}/comments`
-        // console.log(key, url)
-
+        let key = localStorage[localStorageKey];
+        let url = ArticlesUrl + `/${slug}/comments`;
        if(key) {
         fetch(url, {
             method : "POST",
@@ -61,7 +52,6 @@ const moment = require('moment');
     }
 
     handleDeleteComment = (id) => {
-        // console.log(id)
         let slug = this.props.slug;
         let url = ArticlesUrl + `/${slug}/comments/${id}`;
         let key = localStorage[localStorageKey];
@@ -88,7 +78,6 @@ const moment = require('moment');
     render() {
         let {comment} = this.state
         let allComments = this.props.allComments;
-        // console.log(allComments)
         return (
             <>
                <section className="total_comment_section">
@@ -111,14 +100,13 @@ const moment = require('moment');
                         <section className="comments_section">
                                 {
                                     allComments.map((eachComment) => (
-                                        // console.log(eachComment.body)
                                         <div className="comment_card" key={eachComment.id}>
                                             <div>
                                                  <h2 className="comment_body">{eachComment.body}</h2>
                                             </div>
                                         
-                                            <div className="comment_author_info flex align_center between">
-                                                <article className="flex align_center  ">
+                                            <div className=" flex align_center between">
+                                                <article className="comment_author_info flex align_center  ">
                                                    <img className="author_img" src={eachComment.author.image} alt={eachComment.author.image} />
                                                    <h2 className="author_name">{eachComment.author.username}</h2>
                                                    <h3 className="comment_date">{moment(eachComment.createdAt).add(1, 'day').format('LLL')}</h3>

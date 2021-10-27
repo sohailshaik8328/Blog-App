@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import { withRouter } from 'react-router';
-import { ArticlesUrl, BaseUrl, localStorageKey } from './utils/constant';
+import { ArticlesUrl, localStorageKey } from './utils/constant';
 
 class NewArticle extends React.Component {
     state = {
@@ -48,8 +47,7 @@ class NewArticle extends React.Component {
         event.preventDefault();
         let key = localStorage[localStorageKey];
         let url = ArticlesUrl;
-        let {title, description, body, tagList, errors} = this.state;
-        // console.log(key)
+        let {title, description, body, tagList} = this.state;
         if(key ) {
             fetch(url, {
                 method : "POST",

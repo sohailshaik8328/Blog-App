@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import { ArticlesUrl, localStorageKey } from './utils/constant';
 import { withRouter } from 'react-router';
-import { data } from 'autoprefixer';
 
 
  class UpdateArticle extends Component {
@@ -21,7 +19,6 @@ import { data } from 'autoprefixer';
     componentDidMount() {
         let {slug} = this.props.match.params;
         let url = ArticlesUrl + `/${slug}`
-        // console.log(url);
         fetch(url).then(res => res.json()).then(data => {
             this.setState({
                 title : data.article.title,
@@ -34,7 +31,6 @@ import { data } from 'autoprefixer';
 
     handleChange = ({target}) => {
         let {name, value} = target;
-        // console.log(value)
         let errors = this.state.errors;
 
         switch (name) {
@@ -64,8 +60,7 @@ import { data } from 'autoprefixer';
         let key = localStorage[localStorageKey];
         let {slug} = this.props.match.params;
         let url = ArticlesUrl + `/${slug}`
-        let {title, description, body, tagList, errors} = this.state;
-        // console.log(key)
+        let {title, description, body, tagList} = this.state;
         if(key ) {
             fetch(url, {
                 method : "PUT",
@@ -91,7 +86,6 @@ import { data } from 'autoprefixer';
                 return res.json();
             })
             .then((article) => {
-                // console.log(article)
                 this.setState({
                     title : "",
                     description : "",
