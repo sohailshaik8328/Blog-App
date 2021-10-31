@@ -15,6 +15,7 @@ import Profile from './Profile';
 import OthersProfile from './OthersProfile';
 import UpdateArticle from './UpdateArticle';
 import ErrorBoundary from './ErrorBoundary';
+import { Context } from './Context';
 
 
 class App extends React.Component {
