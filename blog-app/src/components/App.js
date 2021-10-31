@@ -14,6 +14,7 @@ import Settings from './Settings';
 import Profile from './Profile';
 import OthersProfile from './OthersProfile';
 import UpdateArticle from './UpdateArticle';
+import ErrorBoundary from './ErrorBoundary';
 
 
 class App extends React.Component {
@@ -101,22 +102,24 @@ function UnAuthenticated(props) {
 
   return (
     <>
-   <Switch>
-     <Route path='/' exact >
-       <Home />
-     </Route>
-     <Route path="/signin" exact >
-         <Signin updateUser={props.updateUser} />
-     </Route>
-     <Route path="/signup" exact >
-         <SignUp updateUser={props.updateUser} />
-     </Route>
-     <Route path="/article/:slug" component={SingleArticle} exact/>
+    <ErrorBoundary>
+      <Switch>
+        <Route path='/' exact >
+          <Home />
+        </Route>
+        <Route path="/signin" exact >
+            <Signin updateUser={props.updateUser} />
+        </Route>
+        <Route path="/signup" exact >
+            <SignUp updateUser={props.updateUser} />
+        </Route>
+        <Route path="/article/:slug" component={SingleArticle} exact/>
 
-     <Route path="*">
-       <NoMatch />
-     </Route>
-   </Switch>
+        <Route path="*">
+          <NoMatch />
+        </Route>
+      </Switch>
+    </ErrorBoundary>
     </>
   )
 }
@@ -125,35 +128,37 @@ function Authenticated(props) {
   let user = props.user.user
   return (
     <>
-   <Switch>
-     <Route path='/' exact >
-       <Home />
-     </Route>
-     <Route path='/new-article' exact >
-       <NewArticle />
-     </Route>
-     <Route path='/profile' exact >
-       <Profile {...props} user = {user}  />
-     </Route>
-     <Route path='/settings' exact  >
-       <Settings updateUser={props.updateUser} onUpdateProfile = {props.onUpdateProfile}/>
-     </Route>
-     <Route exact path="/article/:slug/update">
-       <UpdateArticle {...props} />
-     </Route>
+      <ErrorBoundary>
+          <Switch>
+          <Route path='/' exact >
+            <Home />
+          </Route>
+          <Route path='/new-article' exact >
+            <NewArticle />
+          </Route>
+          <Route path='/profile' exact >
+            <Profile {...props} user = {user}  />
+          </Route>
+          <Route path='/settings' exact  >
+            <Settings updateUser={props.updateUser} onUpdateProfile = {props.onUpdateProfile}/>
+          </Route>
+          <Route exact path="/article/:slug/update">
+            <UpdateArticle {...props} />
+          </Route>
 
-     <Route path="/article/:slug" exact>
-       <SingleArticle  user={user} />
-     </Route>
+          <Route path="/article/:slug" exact>
+            <SingleArticle  user={user} />
+          </Route>
 
-     <Route path="/profiles/:username">
-        <OthersProfile {...props} user={user} />
-      </Route>
+          <Route path="/profiles/:username">
+              <OthersProfile {...props} user={user} />
+            </Route>
 
-     <Route path="*">
-       <NoMatch />
-     </Route>
-   </Switch>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </ErrorBoundary>
     </>
   )
 }
